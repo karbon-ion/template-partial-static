@@ -1,12 +1,13 @@
 'use client';
 import { useState, useEffect } from "react";
-import Dashboard from "./dashboard/page";
 import { supabase } from "@/utils/supabase/client";
 import { redirect } from "next/navigation";
+import { useRouter } from "next/router";
 
 export default function AdminPage() {
     const [isLoading, setIsLoading] = useState(true)
     const [isLoggedIn, setIsLoggedIn] = useState(false)
+    const router = useRouter()
 
     async function getUser() {
 
@@ -33,7 +34,7 @@ export default function AdminPage() {
 
     return (
         <>
-            {isLoggedIn ? <Dashboard /> : redirect("/admin/sign-in")}
+            {isLoggedIn ? redirect("/mainPages") : redirect("/sign-in")}
         </>
     );
 };
